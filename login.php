@@ -14,7 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if (password_verify($password, $user['password'])) {
             $_SESSION['user_id'] = $user['user_id'];
             $_SESSION['username'] = $user['full_name'];
-            header("Location: Dashboard.html");
+            header("Location: Dashboard.php");
             exit();
         } else {
             echo "Incorrect password!";
@@ -37,11 +37,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <div class="container">
         <div class="register-box">
             <h2>Login</h2>
-            <form action="login.php" method="post">
-                <label for="username">Username</label>
+            <form method="post">
+                <label for="username">Name and Last Name:</label>
                 <input type="text" id="username" name="username" required>
+
                 <label for="password">Password</label>
                 <input type="password" id="password" name="password" required>
+
+                <p class="signin-text">NOT a member? <a href="register.php">Sign up</a></p>
                 <button type="submit">Login</button>
             </form>
         </div>

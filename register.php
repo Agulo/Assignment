@@ -19,7 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $result = $stmt->get_result();
 
     if ($result->num_rows > 0) {
-        echo "<script>alert('Username or email already exists!'); window.location='register.html';</script>";
+        echo "<script>alert('Username or email already exists!'); window.location='register.php';</script>";
         exit();
     } 
 
@@ -28,7 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $insert_stmt->bind_param("sss", $username, $email, $hashed_password);
 
     if ($insert_stmt->execute()) {
-        header("Location: login.html");
+        header("Location: login.php");
     } else {
         echo "Error: " . $conn->error;
     }
@@ -53,17 +53,21 @@ $conn->close();
         <div class="register-box">
             <h2>Register</h2>
             <form action="register.php" method="post">
-                <label for="username">Username</label>
+                <label for="username">Name and Last Name:</label>
                 <input type="text" id="username" name="username" required>
+
                 <label for="email">Email</label>
                 <input type="email" id="email" name="email" required>
+
                 <label for="password">Password</label>
                 <input type="password" id="password" name="password" required>
+
                 <label for="confirm">Confirm password</label>
                 <input type="password" id="confirm" name="confirm" required>
+                
                 <button type="submit" name="submit">Register</button>
             </form>
-            <p class="signin-text">Already a member? <a href="login.html">Sign in</a></p>
+            <p class="signin-text">Already a member? <a href="login.php">Sign in</a></p>
         </div>
     </div>
 </body>
